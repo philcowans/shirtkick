@@ -20,8 +20,8 @@ params.inspect
   user = Songkicky::User.find_by_username(params['songkick_username'])
   events = user.past_events
 
-  if params['year_filter']
-    events = events.select {|e| e.date.year == params['year_filter'].to_i}
+  if year
+    events = events.select {|e| e.date.year == year}
   end
 
   if events.size > MAX_EVENTS
@@ -31,8 +31,8 @@ params.inspect
   events = events.sort_by {|e| e.date }
 
   names = events.map do |event|
-    event_name = (event.type.downcase == 'festival') ?  event.festival.name : event.headliners.first.name + ' ' + event.venue.name
-    event.date.to_s + ' ' + event_name
+    event_name = (event.type.downcase == 'festival') ?  event.festival.name : event.headliners.first.name + ' at ' + event.venue.name
+    event.date.strftime(date_format) + ' ' + event_name
   end
 
   @names = names
@@ -40,4 +40,12 @@ params.inspect
   tshirt = TShirt.image(names)
 
   erb :create
+end
+
+def year
+  params['year_filter'].to_i > 0 ? params['year_filter'].to_i : nil
+end
+
+def date_format
+  year ? '%b %d' : '%b %d, %Y'
 end
