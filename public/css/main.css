@@ -1,0 +1,42 @@
+body {
+	background: #fff;
+	color: #333;
+	font-size: 13px;
+	padding: 20px 0 40px;
+}
+
+a {
+	color: #777;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+        color: #777;
+	font-family: Georgia, serif;
+	font-weight: normal;
+	text-align: center;
+	margin-bottom: 24px;
+}
+
+h2 {
+	padding: 20px 0 0;
+	text-align: center;
+}
+
+
+td {
+    padding: 4px 8px;
+}
+
+.labels {
+    width: 128px;
+    text-align: right;
+}
+
+#footer {
+    text-align: center;
+}

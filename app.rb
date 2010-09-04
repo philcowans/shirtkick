@@ -37,13 +37,20 @@ params.inspect
 
   names = events.map do |event|
     event_name = (event.type.downcase == 'festival') ?  event.festival.name : event.headliners.first.name + ' at ' + event.venue.name
-    [event.date.strftime(date_format), event_name]
+    event.date.strftime(date_format) + ' ' + event_name
+  end
+
+  case params['sex']
+  when 'm'
+    product_id = '235365778699920303'
+  when 'f'
+    product_id = '235630985080847263'
   end
 
   username_and_year = CGI.escape("#{params['songkick_username']} #{year}") 
   tourname = CGI.escape(params['tour_name'])
   url = "http://www.zazzle.co.uk/api/create/at-238257252519438443?"
-  url += "rf=238257252519438443&ax=Linkover&pd=235630985080847263&fwd=ProductPage&ed=true&"
+  url += "rf=238257252519438443&ax=Linkover&pd=#{product_id}&fwd=ProductPage&ed=true&"
   url += "text1=#{tourname}&username=#{username_and_year}&dates=#{names.map {|n| CGI.escape(n)}.join("%0A")}"
 
   redirect url
