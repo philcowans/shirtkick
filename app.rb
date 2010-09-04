@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'songkicky'
+require 'cgi'
 require File.dirname(__FILE__)+'/tshirt'
 
 Songkicky.apikey = 'Qv89ysFBmldFIlTQ'
@@ -39,11 +40,13 @@ params.inspect
     [event.date.strftime(date_format), event_name]
   end
 
-  @names = names
+  username_and_year = CGI.escape("#{params['songkick_username']} #{year}") 
+  tourname = CGI.escape(params['tour_name'])
+  url = "http://www.zazzle.co.uk/api/create/at-238257252519438443?"
+  url += "rf=238257252519438443&ax=Linkover&pd=235630985080847263&fwd=ProductPage&ed=true&"
+  url += "text1=#{tourname}&username=#{username_and_year}&dates=#{names.map {|n| CGI.escape(n)}.join("%0A")}"
 
-  tshirt = TShirt.image(names, params['tour_name'])
-
-  erb :create
+  redirect url
 end
 
 def year
