@@ -1,0 +1,8 @@
+<h1><%= params['tour_name'] %></h1>
+<h2><%= params['songkick_username'] %> <%= params['year_filter'] %></h2>
+
+<ol>
+<% @names.each do |name| %>
+  <li><%= name %></li>
+<% end %>
+</ol>

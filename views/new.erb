@@ -1,0 +1,39 @@
+<div style='font-family:Arial,Helvetica,sans-serif'>
+  <h1 style='margin-bottom:0px;font-size:2.4em;letter-spacing:-2px;text-transform:lowercase'>Tour t-shirts</h1>
+  <h2 style='margin-top:0px;font-family:Georgia,"Times New Roman",Times,serif;font-size:13px;font-style:italic'>Awesome html skils</h2>
+
+  <div>
+
+  <div style="margin-top: 50px; width: 600px;">
+
+  <form method="post" action="/create">
+    <div style="width:500px;margin-bottom:50px">
+      <div style="float:right; width: 300px; height:50px">
+        <label for="songkick_username">username</label>
+        <input type="text" name="songkick_username" id="songkick_username" value="<%= params['songkick_username']%>"/>
+        <br>
+        <label for="tour_name">tour name</label>
+        <input type="text" name="tour_name" id="tour_name" value="<%= params['tour_name']%>"/>
+        <br>
+        <label for="year_filter">tour year</label>
+        <input type="text" name="year_filter" id="year_filter" value="<%= params['year_filter']%>"/>
+        <br>
+      </div>
+      <img src="/images/songkick.png" alt="Songkick"/>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div style="margin-top:30px;text-align:right">
+      <input type="submit" value="create my tour t-shirt!"/>
+    </div>
+
+  </form>
+
+  </div>
+
+
+  </div>
+
+</div>
+
