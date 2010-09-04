@@ -7,6 +7,10 @@ Songkicky.apikey = 'Qv89ysFBmldFIlTQ'
 
 MAX_EVENTS = 10
 
+get '/' do
+  erb :index
+end
+
 get '/new' do
   erb :new
 end
@@ -32,12 +36,12 @@ params.inspect
 
   names = events.map do |event|
     event_name = (event.type.downcase == 'festival') ?  event.festival.name : event.headliners.first.name + ' at ' + event.venue.name
-    event.date.strftime(date_format) + ' ' + event_name
+    [event.date.strftime(date_format), event_name]
   end
 
   @names = names
 
-  tshirt = TShirt.image(names)
+  tshirt = TShirt.image(names, params['tour_name'])
 
   erb :create
 end

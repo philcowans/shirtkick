@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Shitkick</title>
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/text.css" />
+<link rel="stylesheet" href="css/960.css" />
+<link rel="stylesheet" href="css/uncompressed/demo.css" />
+</head>
+<body>
+<h1>
+	<a href="/">Shitkick</a>
+</h1>
+<div class="container_12">
+  <div class="grid_4">
+    <p>FOO!</p>
+  </div>
+  <div class="grid_8">
+    <form method="post" action="/create">
+      <label for="songkick_username">username</label>
+      <input type="text" name="songkick_username" id="songkick_username" value="<%= params['songkick_username']%>"/>
+      <br>
+      <label for="tour_name">tour name</label>
+      <input type="text" name="tour_name" id="tour_name" value="<%= params['tour_name']%>"/>
+      <br>
+      <label for="year_filter">tour year</label>
+      <input type="text" name="year_filter" id="year_filter" value="<%= params['year_filter']%>"/>
+      <br>
+      <label for="sex_m">Male</label>
+      <input type="radio" name="sex" id="sex_m" value="m"/> 
+      <label for="sex_f">Female</label>
+      <input type="radio" name="sex" id="sex_f" value="f"/> 
+      <br>
+      <input type="submit">
+    </form>
+  </div>
+  <div class="clear"></div>
+  <div class="grid_12">
+    <a href="http://www.songkick.com/"><img src="/images/songkick.png" alt="Songkick"/></a>
+  </div>
+</div>
+</body>
+</html>
