@@ -37,9 +37,8 @@ params.inspect
   end
 
   case params['sex']
-    when 'm'
-     product_id = '235316138601534892' 
-#    product_id = '235365778699920303'
+  when 'm'
+    product_id = '235305024306672308'
   when 'f'
     product_id = '235630985080847263'
     product_id = '235374916713328904'
