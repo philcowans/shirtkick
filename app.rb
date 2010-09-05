@@ -31,7 +31,7 @@ params.inspect
   events = events.sort_by {|e| e.date }
 
   names = events.map do |event|
-    event_name = (event.type.downcase == 'festival') ?  event.festival.name : event.headliners.first.name + ' at ' + event.venue.name
+    event_name = (event.type.downcase == 'festival') ?  event.festival.name : concert_name(event)
     event_name = event_name[0..36] + "…" if event_name.size > 36
     event.date.strftime(date_format) + ' ' + event_name
   end
@@ -55,6 +55,10 @@ end
 
 def year
   params['year_filter'].to_i > 0 ? params['year_filter'].to_i : nil
+end
+
+def concert_name(event)
+  event.headliners.any? ? event.headliners.first.name + ' at ' + event.venue.name : event.name 
 end
 
 def date_format
