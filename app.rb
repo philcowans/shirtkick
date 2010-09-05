@@ -2,7 +2,6 @@ require 'rubygems'
 require 'sinatra'
 require 'songkicky'
 require 'cgi'
-require File.dirname(__FILE__)+'/tshirt'
 
 Songkicky.apikey = 'Qv89ysFBmldFIlTQ'
 
@@ -10,10 +9,6 @@ MAX_EVENTS = 10
 
 get '/' do
   erb :index
-end
-
-get '/new' do
-  erb :new
 end
 
 post '/create' do
@@ -37,17 +32,20 @@ params.inspect
 
   names = events.map do |event|
     event_name = (event.type.downcase == 'festival') ?  event.festival.name : event.headliners.first.name + ' at ' + event.venue.name
+    event_name = event_name[0..36] + "…" if event_name.size > 36
     event.date.strftime(date_format) + ' ' + event_name
   end
 
   case params['sex']
-  when 'm'
-    product_id = '235365778699920303'
+    when 'm'
+     product_id = '235316138601534892' 
+#    product_id = '235365778699920303'
   when 'f'
     product_id = '235630985080847263'
+    product_id = '235374916713328904'
   end
 
-  username_and_year = CGI.escape("#{params['songkick_username']} #{year}") 
+  username_and_year = CGI.escape("#{params['songkick_username']} #{year.to_s[2..3]}") 
   tourname = CGI.escape(params['tour_name'])
   url = "http://www.zazzle.co.uk/api/create/at-238257252519438443?"
   url += "rf=238257252519438443&ax=Linkover&pd=#{product_id}&fwd=ProductPage&ed=true&"
